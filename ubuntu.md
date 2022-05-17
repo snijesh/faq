@@ -20,12 +20,16 @@ print()
 
 ### How to remove all packages installed after a certain date/time?
 
-##### specific date %yyyy-%mm-%dd replace on here, %yyyy-%mm-%dd
+##### specific date `%yyyy-%mm-%dd` replace on here
 
+```
 grep "2015-12-19.*.install " /var/log/dpkg.log | awk '{ print $4 }' | cut -d: -f1
+```
 
 ##### You get a list of packages
 
 ##### Append them to the list of Apt command arguments with xargs:
+```
 grep "2015-12-19.*.install " /var/log/dpkg.log | awk '{ print $4 }' | cut -d: -f1 | xargs sudo apt-get --yes purge
+```
 
